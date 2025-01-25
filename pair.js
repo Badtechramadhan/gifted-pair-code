@@ -1,3 +1,4 @@
+
 const { giftedid } = require('./id');
 const express = require('express');
 const fs = require('fs');
@@ -26,8 +27,8 @@ function randomMegaId(length = 6, numberLength = 4) {
 async function uploadCredsToMega(credsPath) {
     try {
         const storage = await new Storage({
-  email: 'giftedapis@gmail.com', // // Your Mega A/c Email Here
-  password: 'Ngire@2024#' // Your Mega A/c Password Here
+  email: '', // // Your Mega A/c Email Here
+  password: '' // Your Mega A/c Password Here
 }).ready
         console.log('Mega storage initialized.');
         if (!fs.existsSync(credsPath)) {
@@ -56,13 +57,13 @@ function removeFile(FilePath) {
 router.get('/', async (req, res) => {
     const id = giftedid();
     let num = req.query.number;
-    async function GIFTED_MD_PAIR_CODE() {
+    async function GIFTED_PAIR_CODE() {
         const {
             state,
             saveCreds
         } = await useMultiFileAuthState('./temp/' + id);
         try {
-            let Pair_Code_By_Gifted_Tech = Gifted_Tech({
+            let Gifted = Gifted_Tech({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -71,18 +72,18 @@ router.get('/', async (req, res) => {
                 logger: pino({ level: "fatal" }).child({ level: "fatal" }),
                 browser: Browsers.macOS("Safari")
             });
-            if (!Pair_Code_By_Gifted_Tech.authState.creds.registered) {
+            if (!Gifted.authState.creds.registered) {
                 await delay(1500);
                 num = num.replace(/[^0-9]/g, '');
-                const code = await Pair_Code_By_Gifted_Tech.requestPairingCode(num);
+                const code = await Gifted.requestPairingCode(num);
                 console.log(`Your Code: ${code}`);
                 if (!res.headersSent) {
                     await res.send({ code });
                 }
             }
 
-            Pair_Code_By_Gifted_Tech.ev.on('creds.update', saveCreds);
-            Pair_Code_By_Gifted_Tech.ev.on("connection.update", async (s) => {
+            Gifted.ev.on('creds.update', saveCreds);
+            Gifted.ev.on("connection.update", async (s) => {
                 const { connection, lastDisconnect } = s;
 
                 if (connection == "open") {
@@ -100,9 +101,9 @@ router.get('/', async (req, res) => {
           
           console.log(`Session ID: ${sid}`);
 
-                    const session = await Pair_Code_By_Gifted_Tech.sendMessage(Pair_Code_By_Gifted_Tech.user.id, { text: sid });
+                    const session = await Gifted.sendMessage(Gifted.user.id, { text: sid }, { disappearingMessagesInChat: true, ephemeralExpiration: 600, });
 
-                    const GIFTED_MD_TEXT = `
+                    const GIFTED_TEXT = `
 *✅sᴇssɪᴏɴ ɪᴅ ɢᴇɴᴇʀᴀᴛᴇᴅ✅*
 ______________________________
 ╔════◇
@@ -123,14 +124,14 @@ ______________________________
 Use your Session ID Above to Deploy your Bot.
 Check on YouTube Channel for Deployment Procedure(Ensure you have Github Account and Billed Heroku Account First.)
 Don't Forget To Give Star⭐ To My Repo`;
-                    await Pair_Code_By_Gifted_Tech.sendMessage(Pair_Code_By_Gifted_Tech.user.id, { text: GIFTED_MD_TEXT }, { quoted: session });
+                    await Gifted.sendMessage(Gifted.user.id, { text: GIFTED_TEXT }, { quoted: session },  { disappearingMessagesInChat: true, ephemeralExpiration: 600, });
 
                     await delay(100);
-                    await Pair_Code_By_Gifted_Tech.ws.close();
+                    await Gifted.ws.close();
                     return await removeFile('./temp/' + id);
                 } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10000);
-                    GIFTED_MD_PAIR_CODE();
+                    GIFTED_PAIR_CODE();
                 }
             });
         } catch (err) {
@@ -142,14 +143,7 @@ Don't Forget To Give Star⭐ To My Repo`;
         }
     }
 
-    return await GIFTED_MD_PAIR_CODE();
+    return await GIFTED_PAIR_CODE();
 });
 
 module.exports = router;
-
-
-
-
-
-
-

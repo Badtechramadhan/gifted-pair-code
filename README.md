@@ -19,13 +19,24 @@
 
 [`ℹ️Contact Owner`](https://api.giftedtech.my.id/contact)
 
-FORK THIS REPOSITORY (Repo) 
-    <br>
-<a href="https://github.com/mouricedevs/gifted-pair-code"><img title="WEB" src="https://img.shields.io/badge/FORK GIFTED?color=black&style=for-the-badge&logo=stackshare"></a>
+### FORK THIS REPOSITORY 
+ <br>
+<a href='https://github.com/mouricedevs/gifted-pair-code/fork' target="_blank">
+    <img alt='FORK REPO' src='https://img.shields.io/badge/-FORK REPO-black?style=for-the-badge&logo=github&logoColor=white'/>
+</a>
 
-Now Deploy
-    <br>
-<a href='https://dashboard.heroku.com/new?template=https://github.com/mouricedevs/gifted-pair-code' target="_blank"><img alt='DEPLOY' src='https://img.shields.io/badge/-DEPLOY-black?style=for-the-badge&logo=heroku&logoColor=white'/>
+
+### DEPLOYMENT
+ 
+<a href='https://dashboard.heroku.com/new?template=https://github.com/mouricedevs/gifted-pair-code' target="_blank"><img alt='HEROKU DEPLOY' src='https://img.shields.io/badge/-HEROKU DEPLOY-black?style=for-the-badge&logo=heroku&logoColor=white'/>
+ <br>
+<a href='https://dashboard.render.com' target="_blank">
+    <img alt='DEPLOY TO RENDER' src='https://img.shields.io/badge/-DEPLOY TO RENDER-black?style=for-the-badge&logo=render&logoColor=white'/>
+</a>
+ <br>
+<a href='https://app.koyeb.com' target="_blank">
+    <img alt='DEPLOY TO KOYEB' src='https://img.shields.io/badge/-DEPLOY TO KOYEB-black?style=for-the-badge&logo=koyeb&logoColor=white'/>
+</a>
 
 [`HERE'S AN EXAMPLE OUTPUT`](https://pair1.giftedtech.my.id)
 # `Owner`
